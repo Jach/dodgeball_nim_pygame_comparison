@@ -76,3 +76,7 @@ difference between `x(foo, bar)` and `foo.x(bar)`.
 
 All code files are released in the public domain. If you need a WTFPL for
 some reason let me know.
+
+# Note for watchers/people using this to learn
+
+https://hookrace.net/blog/writing-a-2d-platform-game-in-nim-with-sdl2/ is a much better tutorial. :)
