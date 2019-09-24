@@ -2,6 +2,46 @@
 
 ![Daaaawwwwwwwdddddge](dodge.png)
 
+# Update for Nim 1.0
+
+Congrats Nim!
+
+To be honest I haven't kept up with the language much since 2016. I think in
+2018 I tried a dev build of Nim for fun, but it failed to compile this. It was
+not a simple error, either... ultimately the fix was simple, though. I just had
+to import the `random` module, because the `random` function that used to be
+built-in was now shepherded off.
+
+I tried building again today, and a new error! It doesn't like the type `expr`
+in my old syntax template. I replaced this with `untyped` following a 10-second
+search and look at an example in the manual, no idea if this is actually right.
+But it builds now. I ran into a runtime error I suspect is due to a negative
+number in the final random(), anyway should be fixed...
+
+The compiler generally seems more helpful now. It's got a number of useful
+warnings, for instance, about how `random` is deprecated, and a couple things
+are unused. The crashes have line numbers in stack traces. I'm annoyed that
+source updating was required (not unexpected was rebuilding sdl2 with nimble)
+but the experience was pretty straightforward and even better than I last
+remember it a year ago.
+
+But that Python code (which the nim code copied as close as possible at the
+expense of readability etc) is over a decade old. Still runs.
+
+Basically I've settled on Common Lisp being my preferred language to spend my
+limited side project energy on. I want that longevity (even longer than Python,
+plus no Foundation to wreck stuff) but also just the language features. Lisp
+can be as low level as Nim, or super high level, it's cross-cutting.
+
+I'd still prefer to get back into Nim over, say, C++, especially in a game
+context. But ideally I'd just want to do more Lisp. It's a fun and rewarding
+language to master.
+
+Anyway just a bit of a bittersweet happy 1.0. We'll see if I have to update
+this again just to keep this basic demo building in the future.
+
+----
+
 A long time ago, sometime in 2006 or 2007, I was learning how to make games
 with Python and PyGame. One of my first attempts was cloning a calculator
 game I played a lot on my TI-89, simply called Dodge. You can see the result

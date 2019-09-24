@@ -10,6 +10,7 @@ To build and run:
 
 import sdl2, sdl2/gfx
 import math
+import random
 
 
 # Rect procs to make it a bit saner to work with the types and SDL's default rect...
@@ -62,9 +63,9 @@ proc fill(surf: SurfacePtr, color: (int, int, int)) =
 proc drawFilledCircle(screen: RendererPtr, color: (int, int, int), center: (int, int), radius: int) =
   discard screen.filledCircleRGBA(center[0].int16, center[1].int16, radius.int16, color[0].uint8, color[1].uint8, color[2].uint8, 255)
 
-# cool template to make this cast prettier... 
+# cool template to make this cast prettier...
 # note we need the addr x[0] for seqs, addr x would work for arrays
-template `:-/` (x: expr): expr = cast[ptr type(x[0])](addr x[0])
+template `:-/` (x: untyped): untyped = cast[ptr type(x[0])](addr x[0])
 proc drawFilledPolygon(screen: RendererPtr, color: (int, int, int), point_list: openarray[array[2, int]]) =
   var xs, ys: seq[int16]
   xs = @[]
@@ -252,7 +253,12 @@ proc play() =
           if int(center/4) < center-30:
             rand_x = 0
           else:
-            rand_x = int(center/4) + random(center-30 - int(center/4))
+            var diff = center-30 - int(center/4)
+            if diff < 0:
+              diff = -random(-diff)
+            else:
+              diff = random(diff)
+            rand_x = int(center/4) + diff
           if rand_x < 30:
             rand_x += 50 + random(300-50)
         balls.add(newBall(rand_x))
